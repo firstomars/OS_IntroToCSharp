@@ -34,6 +34,7 @@ namespace AIE_23_PONG
 
             while (!Raylib.WindowShouldClose())
             {
+                Update();
                 Draw();
             }
 
@@ -56,7 +57,7 @@ namespace AIE_23_PONG
             ball.pos.Y += ball.dir.Y * ball.speed;
         }
 
-        void Draw() // what does all this mean?
+        void Draw() 
         {
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.DARKGREEN);
