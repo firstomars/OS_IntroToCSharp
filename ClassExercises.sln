@@ -63,7 +63,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_29_GameSettings_RL", "A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_30_MinMax", "AIE_30_MinMax\AIE_30_MinMax.csproj", "{8AB8D300-9156-4FD3-943B-5CA47703AB3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_31_CheckArrayEquality", "AIE_31_CheckArrayEquality\AIE_31_CheckArrayEquality.csproj", "{A071760C-62F9-4E5A-A044-87A994B2B06D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_31_CheckArrayEquality", "AIE_31_CheckArrayEquality\AIE_31_CheckArrayEquality.csproj", "{A071760C-62F9-4E5A-A044-87A994B2B06D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_32_ASTEROIDS", "AIE_31_ASTEROIDS\AIE_32_ASTEROIDS.csproj", "{543E7DDB-8911-461D-B58D-0298FFD1A1CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -195,6 +197,10 @@ Global
 		{A071760C-62F9-4E5A-A044-87A994B2B06D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A071760C-62F9-4E5A-A044-87A994B2B06D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A071760C-62F9-4E5A-A044-87A994B2B06D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{543E7DDB-8911-461D-B58D-0298FFD1A1CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{543E7DDB-8911-461D-B58D-0298FFD1A1CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{543E7DDB-8911-461D-B58D-0298FFD1A1CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{543E7DDB-8911-461D-B58D-0298FFD1A1CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
