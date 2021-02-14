@@ -13,8 +13,14 @@ namespace AIE_32_ASTEROIDS
 
         Player player;
         Bullet[] bullets = new Bullet[100];
+
         Asteroid[] asteroids = new Asteroid[100];
-        
+        int bigAsteroidDestroyScoreAmount = 50;
+        int smallAsteroidDestroyScoreAmount = 30;
+        int tinyAsteroidDestroyScoreAmount = 5;
+
+
+
         float asteroidSpawnCooldown = 4.0f;
         float asteroidSpawnCooldownReset = 4.0f;
 
@@ -48,14 +54,15 @@ namespace AIE_32_ASTEROIDS
                 this,
                 new Vector2(windowWidth / 2, windowHeight / 2), 
                 new Vector2(windowWidth / 18, windowWidth / 18));
+
             //Initialise all other assets here
 
             //initialise bullets null
-
-            for(int i = 0; i < bullets.Length; i++)
+            for (int i = 0; i < bullets.Length; i++)
             {
                 bullets[i] = null;
             }
+
         }
 
         void Update()
@@ -70,7 +77,6 @@ namespace AIE_32_ASTEROIDS
             player.Update();
             
             //check bullet / asteroid collission
-            
             foreach (var bullet in bullets)
             {
                 foreach(var asteroid in asteroids)
@@ -80,8 +86,14 @@ namespace AIE_32_ASTEROIDS
             }
 
             player.playerAsteroidCollision = false;
+            
             foreach (var asteroid in asteroids)
             {
+                if(asteroid != null)
+                {
+                    asteroid.asteroidCollisionPlayer = false;
+                }
+
                 DoPlayerAsteroidCollision(player, asteroid);
             }
             
@@ -104,9 +116,6 @@ namespace AIE_32_ASTEROIDS
             }
         }
         
-
-
-
         void Draw()
         {
             Raylib.BeginDrawing();
@@ -179,7 +188,7 @@ namespace AIE_32_ASTEROIDS
             //left spawn
             if(side == 0)
             {
-                SpawnAsteroid(new Vector2(0, rand.Next(0,windowHeight)), dir, radius); //explain everything
+                SpawnAsteroid(new Vector2(0, rand.Next(0,windowHeight)), dir, radius);
             }
 
             //top wall
@@ -209,13 +218,15 @@ namespace AIE_32_ASTEROIDS
                 return;
             }
 
-            if (asteroid.radius > 20)
+            if (asteroid.radius > 5)
             {
                 float distance = (player.pos - asteroid.pos).Length();
 
                 if (distance < asteroid.radius + (player.size.X * 0.5f))
                 {
                     player.playerAsteroidCollision = true;
+                    asteroid.asteroidCollisionPlayer = true;
+                    
                     //Console.WriteLine("Player has collided with asteroid.");
                 }
 
@@ -256,6 +267,21 @@ namespace AIE_32_ASTEROIDS
                     if (asteroids[i] == asteroid)
                     {
                         asteroids[i] = null;
+
+                        if (asteroid.radius >= 15)
+                        {
+                            player.CalculateScore(bigAsteroidDestroyScoreAmount);
+                        }
+                        else if (asteroid.radius < 15 && asteroid.radius > 5)
+                        {
+                            player.CalculateScore(smallAsteroidDestroyScoreAmount);
+                        }
+
+                        else
+                        {
+                            player.CalculateScore(tinyAsteroidDestroyScoreAmount);
+                        }
+                        
                         break;
                     }
                 }

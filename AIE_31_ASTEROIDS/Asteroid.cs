@@ -12,7 +12,12 @@ namespace AIE_32_ASTEROIDS
         public Vector2 dir = new Vector2();
         public float radius = 40;
 
-        public int asteroidDestroyScoreAmount = 50;
+
+        public bool asteroidCollisionPlayer = false;
+
+        Color asteroidHitColour = new Color(255, 100, 100, 75);
+        //Color asteroidNormalColour = new Color(255, 255, 255, 100);
+        Color asteroidCurrentColour = new Color(255, 255, 255, 100);
 
         Program program;
 
@@ -37,11 +42,14 @@ namespace AIE_32_ASTEROIDS
 
         public void Draw()
         {
-            Color c = new Color(255, 255, 255, 100);
-            
+            //Color c = new Color(255, 255, 255, 100);
+
             //Raylib.DrawCircle((int)pos.X, (int)pos.Y, radius, Color.WHITE);
 
-            Raylib.DrawCircle((int)pos.X, (int)pos.Y, radius, c);
+            Color color = asteroidCollisionPlayer ? asteroidHitColour : asteroidCurrentColour;
+
+            Raylib.DrawCircle((int)pos.X, (int)pos.Y, radius, color);
+
         }
     }
 }

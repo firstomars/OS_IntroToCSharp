@@ -20,11 +20,11 @@ namespace AIE_32_ASTEROIDS
         public Vector2 velocity = new Vector2(0,0);
 
         public bool playerAsteroidCollision = false;
-        Color normalColor = Color.WHITE;
         Color hitColor = new Color(255, 100, 100, 255);
         Color currentColor = Color.WHITE;
 
-        public int currentScore = 0;
+        int currentScore = 0;
+        string scoreString = "0";
 
         float bulletSpawnCooldown = 0.2f;
         float bulletSpawnCooldownReset = 0.2f;
@@ -104,7 +104,7 @@ namespace AIE_32_ASTEROIDS
             var texture = Asset.planeTexture;
 
             // (condition ? true_expression : false_expression);
-            Color color = playerAsteroidCollision ? hitColor : normalColor;
+            Color color = playerAsteroidCollision ? hitColor : currentColor;
 
             Raylib.DrawTexturePro(
                 texture,
@@ -114,7 +114,20 @@ namespace AIE_32_ASTEROIDS
                 rotation,
                 color);
 
-            Raylib.DrawText("0", (program.windowWidth / 25), (program.windowHeight/20), 20, Color.RAYWHITE);
+            Raylib.DrawText(scoreString, (program.windowWidth / 25), (program.windowHeight/20), 20, Color.RAYWHITE);
+        }
+
+        public void CalculateScore(int addPoints)
+        {
+            currentScore += addPoints;
+            Console.WriteLine(currentScore);
+
+            scoreString = currentScore.ToString();
+
+
+            //string sNumber = Console.ReadLine();
+            //int number = int.Parse(sNumber);
+
         }
 
         //public void ResetColour()
