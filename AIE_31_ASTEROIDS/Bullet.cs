@@ -6,23 +6,23 @@ using Raylib_cs;
 
 namespace AIE_32_ASTEROIDS
 {
-    class Bullet
+    class Bullet : GameObject
     {
-        public Vector2 pos = new Vector2();
         public Vector2 dir = new Vector2();
         public float speed = 10;
 
-        Program program;
+        //Program program;
+        //public Vector2 pos = new Vector2();
 
 
-        public Bullet(Program program, Vector2 pos, Vector2 dir)
+        public Bullet(Program program, Vector2 pos, Vector2 dir) : base(program, pos)
         {
-            this.program = program;
-            this.pos = pos;
+            //this.program = program;
+            //this.pos = pos;
             this.dir = dir;
         }
 
-        public void Update()
+        public override void Update()
         {
             pos += dir * speed;
 
@@ -32,7 +32,7 @@ namespace AIE_32_ASTEROIDS
             if (pos.Y > program.windowHeight) pos.Y = 0;
         }
 
-        public void Draw()
+        public override void Draw()
         {
             Raylib.DrawLine((int)pos.X, (int)pos.Y, (int)(pos.X - dir.X * speed), (int)(pos.Y - dir.Y * speed), Color.BROWN);
 

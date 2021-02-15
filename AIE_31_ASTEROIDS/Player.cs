@@ -6,11 +6,11 @@ using Raylib_cs;
 
 namespace AIE_32_ASTEROIDS
 {
-    class Player
+    class Player : GameObject
     {
-        Program program;
-        
-        public Vector2 pos = new Vector2();
+        //Program program;
+        //public Vector2 pos = new Vector2();
+
         public Vector2 size = new Vector2(64, 64);
         
         public float rotation = 0.0f;
@@ -33,14 +33,14 @@ namespace AIE_32_ASTEROIDS
         //float timerCountDownHit = 0.5f;
         //float timerCountDownHitReset = 0.5f;
 
-        public Player(Program program, Vector2 pos, Vector2 size)
+        public Player(Program program, Vector2 pos, Vector2 size) : base(program, pos)
         {
-            this.program = program;
-            this.pos = pos;
+            //this.program = program;
+            //this.pos = pos;
             this.size = size;
         }
 
-        public void Update()
+        public override void Update()
         {
             //ChangePlayerColourOnHit();
 
@@ -99,7 +99,7 @@ namespace AIE_32_ASTEROIDS
               MathF.Sin((MathF.PI / 180) * rotation));
         }
 
-        public void Draw()
+        public override void Draw()
         {
             var texture = Asset.planeTexture;
 

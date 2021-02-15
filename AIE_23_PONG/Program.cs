@@ -32,7 +32,8 @@ namespace AIE_23_PONG
     {
         int windowWidth = 800;
         int windowHeight = 450;
-        Ball ball;
+        Ball ball1;
+        Ball ball2;
 
         Paddle paddleLeft;
 
@@ -63,11 +64,16 @@ namespace AIE_23_PONG
 
         void LoadGame()
         {
-            ball = new Ball();
-            ball.pos.X = windowWidth / 2;
-            ball.pos.Y = windowHeight / 2;
-            ball.dir.X = 0.707f;
-            ball.dir.Y = 0.707f;
+            ball1 = new Ball();
+            ResetBall(ball1);
+            ball1.dir.X = 0.707f;
+            ball1.dir.Y = 0.707f;
+
+            ball2 = new Ball();
+            ResetBall(ball2);
+            ball2.dir.X = -0.707f;
+            ball2.dir.Y = 0.707f;
+
 
             paddleLeft = new Paddle();
             //paddleLeft.paddlePos = new Vector2(0, windowHeight / 2);
@@ -89,11 +95,17 @@ namespace AIE_23_PONG
 
         void Update()
         {
-            UpdateBall(ball);
+            UpdateBall(ball1);
+            UpdateBall(ball2);
+
             UpdatePaddle(paddleLeft);
             UpdatePaddle(paddleRight);
-            DoesBallHitPaddle(ball, paddleLeft);
-            DoesBallHitPaddle(ball, paddleRight);
+
+            DoesBallHitPaddle(ball1, paddleLeft);
+            DoesBallHitPaddle(ball1, paddleRight);
+
+            DoesBallHitPaddle(ball2, paddleLeft);
+            DoesBallHitPaddle(ball2, paddleRight);
 
         }
 
@@ -107,13 +119,13 @@ namespace AIE_23_PONG
 
             if (b.pos.X < 0)
             {
-                ResetBall();
+                ResetBall(b);
                 paddleRight.score += 1;
             }
 
             if (b.pos.X > windowWidth)
             {
-                ResetBall();
+                ResetBall(b);
                 paddleLeft.score += 1;
             }
 
@@ -141,7 +153,10 @@ namespace AIE_23_PONG
         {
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.DARKGREEN);
-            DrawBall(ball);
+
+            DrawBall(ball1);
+            DrawBall(ball2);
+
             DrawPaddle(paddleLeft);
             DrawPaddle(paddleRight);
 
@@ -199,9 +214,13 @@ namespace AIE_23_PONG
             //}
         }
 
-        void ResetBall()
+        void ResetBall(Ball b)
         {
-            ball.pos = new Vector2(windowWidth / 2, windowHeight / 2);
+            b.pos = new Vector2(windowWidth / 2, windowHeight / 2);
+
+
+            // two states
+
 
             //Vector2 resetBallPos = new Vector2(windowWidth / 2, windowHeight / 2);
             //float ballCountdown = 1.0f;
@@ -217,7 +236,8 @@ namespace AIE_23_PONG
             //    //ball.dir.X = 0.0f;
             //    //ball.dir.Y = 0.0f;
 
-            //    //ballCountdown -= Raylib.GetFrameTime();
+            //    //ballCountdown -= Raylib.GetFrameTime(); 
+            //this won't work because ResetBall() is not connected with the Update() method. So it doesn't have the ability to countdown frames.
 
             //    //Console.WriteLine(ballCountdown);
 
@@ -267,3 +287,70 @@ namespace AIE_23_PONG
     }
 
 }
+
+
+// logic for countdown startingBallState
+
+/*
+class Ball
+{
+	enum BallState
+	{
+		Starting,
+		Moving
+	}
+	
+	
+	public BallState state = Starting;
+	public float startTimer = 1.0f;
+	
+}
+
+
+class Program
+{
+	Ball ball;
+	
+	
+	void Update()
+	{
+		UpdateBall(ball);
+	}
+	
+	void Draw()
+	{
+	
+	}
+	
+	void ResetBall(Ball b)
+	{
+		b.state = Ball.BallState.Starting;
+		b.pos = new Vector2(windowWidth/2, windowHeight/2);
+	}
+	
+	void UpdateBall(Ball b)
+	{
+		if(b.state == Ball.BallState.Starting)
+			UpdateBallStartingState(b);
+		else if(b.state == Ball.BallState.Moving)
+			UpdateBallMovingState(b);
+	}
+	
+	void UpdateBallStartingState(Ball b)
+	{
+		b.startTimer -= Raylib.GetFrameTime();
+		if(b.startTimer < 0 )
+		{
+			b.StartTimer = 1.0f;
+			b.state = Ball.BallState.Moving;
+		}
+	}
+	
+	void UpdateBallMovingState(Ball b)
+	{
+		b.pos += b.dir * b.speed;
+		if(b.pos < 0) ResetBall(b);
+		if(b.pos > windowWidth) ResetBall(b);
+	}
+}
+ */
