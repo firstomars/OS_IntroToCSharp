@@ -9,7 +9,6 @@ namespace AIE_32_ASTEROIDS
     class Asteroid : GameObject
     {
 
-        public Vector2 dir = new Vector2();
         public float radius = 40;
 
 
@@ -22,12 +21,10 @@ namespace AIE_32_ASTEROIDS
         //Program program;
         //public Vector2 pos = new Vector2();
 
-        public Asteroid(Program program, Vector2 pos, Vector2 dir, float radius)  : base(program, pos)
+        public Asteroid(Program program, Vector2 pos, Vector2 dir, float radius)  : base(program, pos, dir)
             // Constructor - so calling this function, call the class? object instantiation?
         {
-            this.program = program;
-            this.pos = pos;
-            this.dir = dir;
+            
         }
 
         public override void Update()

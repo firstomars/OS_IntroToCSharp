@@ -8,18 +8,15 @@ namespace AIE_32_ASTEROIDS
 {
     class Bullet : GameObject
     {
-        public Vector2 dir = new Vector2();
         public float speed = 10;
 
         //Program program;
         //public Vector2 pos = new Vector2();
 
 
-        public Bullet(Program program, Vector2 pos, Vector2 dir) : base(program, pos)
+        public Bullet(Program program, Vector2 pos, Vector2 dir) : base(program, pos, dir)
         {
-            //this.program = program;
-            //this.pos = pos;
-            this.dir = dir;
+            
         }
 
         public override void Update()

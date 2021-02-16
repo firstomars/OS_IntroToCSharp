@@ -8,12 +8,9 @@ namespace AIE_32_ASTEROIDS
 {
     class Player : GameObject
     {
-        //Program program;
-        //public Vector2 pos = new Vector2();
 
         public Vector2 size = new Vector2(64, 64);
         
-        public float rotation = 0.0f;
         public float rotationSpeed = 5.0f;
 
         public float accelerationSpeed = 0.05f;
@@ -35,8 +32,6 @@ namespace AIE_32_ASTEROIDS
 
         public Player(Program program, Vector2 pos, Vector2 size) : base(program, pos)
         {
-            //this.program = program;
-            //this.pos = pos;
             this.size = size;
         }
 
@@ -60,12 +55,12 @@ namespace AIE_32_ASTEROIDS
         {
             if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
             {
-                rotation -= rotationSpeed;
+                Rotate(-rotationSpeed);
             }
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
             {
-                rotation += rotationSpeed;
+                Rotate(rotationSpeed);
             }
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
@@ -94,9 +89,7 @@ namespace AIE_32_ASTEROIDS
 
         public Vector2 GetFacingDirection()
         {
-            return new Vector2(
-              MathF.Cos((MathF.PI / 180) * rotation), 
-              MathF.Sin((MathF.PI / 180) * rotation));
+            return dir;
         }
 
         public override void Draw()
@@ -111,7 +104,7 @@ namespace AIE_32_ASTEROIDS
                 new Rectangle(0, 0, texture.width, texture.height),
                 new Rectangle(pos.X, pos.Y, size.X, size.Y),
                 new Vector2(0.5f * size.X, 0.5f * size.Y),
-                rotation,
+                GetRotation(),
                 color);
 
             Raylib.DrawText(scoreString, (program.windowWidth / 25), (program.windowHeight/20), 20, Color.RAYWHITE);
