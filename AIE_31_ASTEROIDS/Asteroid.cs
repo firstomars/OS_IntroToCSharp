@@ -9,6 +9,9 @@ namespace AIE_32_ASTEROIDS
     class Asteroid : GameObject
     {
 
+        public int ID;
+        public static int nextID = 0;
+
         public float radius = 40;
 
         public bool asteroidCollisionPlayer = false;
@@ -23,7 +26,8 @@ namespace AIE_32_ASTEROIDS
         public Asteroid(Program program, Vector2 pos, Vector2 dir, float radius)  : base(program, pos, dir)
             // Constructor - so calling this function, call the class? object instantiation?
         {
-            
+            ID = nextID;
+            nextID += 1;
         }
 
         public override void Update()

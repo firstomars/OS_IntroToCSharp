@@ -119,7 +119,7 @@ namespace AIE_32_ASTEROIDS
                 SerialiseAsteroidDetails(asteroids, "./savefile/asteroidsave.txt");
             }
 
-            if(Raylib.IsKeyPressed(KeyboardKey.KEY_L))
+            if(Raylib.IsKeyPressed(KeyboardKey.KEY_L)) // add control
             {
                 Console.WriteLine($"Current player position: {player.pos}");
                 DeserialiseSaveDetails(player, asteroids, "./savefile/playersave.txt");
@@ -251,7 +251,7 @@ namespace AIE_32_ASTEROIDS
                 {
                     if (a != null)
                     {
-                        sw.WriteLine(a); //how to give each asteroid a name?
+                        sw.WriteLine(a.ID);
                         sw.WriteLine(a.pos); 
                         sw.WriteLine(a.dir);
                         sw.WriteLine(a.radius);
