@@ -16,6 +16,12 @@ namespace AIE_36_ChessGame
         {
             Program p = new Program();
             p.RunGame();
+
+            // Serialise
+            //SerialiseChessBoard(string filename, ChessPiece[,] board);
+            
+
+            // Deserialise
         }
 
         void RunGame()
@@ -58,6 +64,9 @@ namespace AIE_36_ChessGame
                     board.SelectTile(mouseYIndex, mouseXIndex);
                 }
             }
+
+
+            if (Raylib.IsKeyPressed(KeyboardKey.KEY_S)) board.SerialiseChessBoard("./savegame/save.txt");
         }
 
         void Draw()

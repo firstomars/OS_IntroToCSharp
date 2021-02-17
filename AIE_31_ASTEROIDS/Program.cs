@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Numerics;
 using Raylib_cs;
 
@@ -10,7 +11,6 @@ namespace AIE_32_ASTEROIDS
         public int windowHeight = 450;
         public string windowTitle = "Asteroids";
 
-
         Player player;
         Bullet[] bullets = new Bullet[100];
 
@@ -18,8 +18,6 @@ namespace AIE_32_ASTEROIDS
         int bigAsteroidDestroyScoreAmount = 50;
         int smallAsteroidDestroyScoreAmount = 30;
         int tinyAsteroidDestroyScoreAmount = 5;
-
-
 
         float asteroidSpawnCooldown = 4.0f;
         float asteroidSpawnCooldownReset = 4.0f;
@@ -114,6 +112,18 @@ namespace AIE_32_ASTEROIDS
                 }
                 
             }
+
+            if (Raylib.IsKeyPressed(KeyboardKey.KEY_S)) // && Raylib.IsKeyPressed(KeyboardKey.KEY_LEFT_CONTROL)
+            {
+                SerialisePlayerDetails(player, "./savefile/playersave.txt");
+                SerialiseAsteroidDetails(asteroids, "./savefile/asteroidsave.txt");
+            }
+
+            if(Raylib.IsKeyPressed(KeyboardKey.KEY_L))
+            {
+                Console.WriteLine($"Current player position: {player.pos}");
+                DeserialiseSaveDetails(player, asteroids, "./savefile/playersave.txt");
+            }
         }
         
         void Draw()
@@ -139,7 +149,6 @@ namespace AIE_32_ASTEROIDS
                 {
                     asteroids[i].Draw();
                 }
-
             }
 
             Raylib.EndDrawing();
@@ -208,8 +217,109 @@ namespace AIE_32_ASTEROIDS
             {
                 SpawnAsteroid(new Vector2(rand.Next(0, windowWidth), windowHeight), dir, radius);
             }
+        }
+
+        void SerialisePlayerDetails(Player player, String filename)
+        {
+            //create folder
+            FileInfo fileInfo = new FileInfo(filename);
+            string directory = fileInfo.Directory.FullName;
+            Directory.CreateDirectory(directory);
+            Console.WriteLine("Save folder created.");
+
+            //use streamwriter to write player.pos, player.dir, score
+            using (StreamWriter sw = File.CreateText(filename))
+            {
+                Console.WriteLine("Save file created.");
+                sw.WriteLine($"Player position is {player.pos}");
+                sw.WriteLine($"Player direction is {player.dir}");
+                sw.WriteLine($"Player score is {player.currentScore}");
+            }
+        }
+
+        void SerialiseAsteroidDetails(Asteroid[] asteroids, string filename)
+        {
+            //create folder
+            FileInfo fileInfo = new FileInfo(filename);
+            string directory = fileInfo.Directory.FullName;
+            Directory.CreateDirectory(directory);
+
+            //creating text files
+            using(StreamWriter sw = File.CreateText(filename))
+            {
+                foreach(var a in asteroids)
+                {
+                    if (a != null)
+                    {
+                        sw.WriteLine(a); //how to give each asteroid a name?
+                        sw.WriteLine(a.pos); 
+                        sw.WriteLine(a.dir);
+                        sw.WriteLine(a.radius);
+                        sw.WriteLine("");
+                    }
+                }
+            }
+        }
+
+        void DeserialiseSaveDetails(Player player, Asteroid[] asteroids, string filename)
+        {
+            //using stream read from file
+            using (StreamReader sr = File.OpenText(filename))
+            {
+                //Get player position
+                string playerPosLine;
+
+                if ((playerPosLine = sr.ReadLine()) != null)
+                {
+                    string[] playerPosWords = playerPosLine.Split(" ");
+                    string rawValX = playerPosWords[3].Trim('<', ',');
+                    string rawValY = playerPosWords[4].Remove(playerPosWords[4].Length - 1, 1);
+
+                    player.pos.X = int.Parse(rawValX);
+                    player.pos.Y = int.Parse(rawValY);
+
+                    Console.WriteLine($"New player position: {player.pos}");
+                }
+
+                //string playerDirLine;
+
+                //if ((playerDirLine = sr.ReadLine()) != null)
+                //{
+                //    string[] playerDirWords = playerDirLine.Split(" ");
+                //    string rawXDirXVal = playerDirWords[3];
+                //}
+
+                //while ((playerPosLine = sr.ReadLine()) != null)
+                //{
+                //    string[] playerPosWords = playerPosLine.Split(" ");
+                //    string rawValX = playerPosWords[3].Trim('<', ',');
+                //    string rawValY = playerPosWords[4].Remove(playerPosWords[4].Length - 1, 1);
+
+                //    player.pos.X = int.Parse(rawValX);
+                //    player.pos.Y = int.Parse(rawValY);
+
+                //    Console.WriteLine($"New player position: {player.pos}");
+                //}
+
+                
+
+
+
+
+                //change player.pos
+
+
+
+                //change player.dir
+
+                //change player.currentScore
+            }
+
+
 
         }
+
+
 
         void DoPlayerAsteroidCollision(Player player, Asteroid asteroid)
         {
@@ -229,11 +339,7 @@ namespace AIE_32_ASTEROIDS
                     
                     //Console.WriteLine("Player has collided with asteroid.");
                 }
-
-                
             }
-           
-
         }
 
         void DoBulletAsteroidCollision(Bullet bullet, Asteroid asteroid)

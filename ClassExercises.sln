@@ -75,13 +75,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_35_InheritanceTwo", "AI
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_36_ChessGame", "AIE_36_ChessGame\AIE_36_ChessGame.csproj", "{6BC71CD0-4393-46D2-BDA9-66388B45EF6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_37_FileIOsavecontact", "AIE_37_FileIOsavecontact\AIE_37_FileIOsavecontact.csproj", "{FBF54815-A4D1-4FA2-98B2-6FF4B56F75FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_37_FileIOsavecontact", "AIE_37_FileIOsavecontact\AIE_37_FileIOsavecontact.csproj", "{FBF54815-A4D1-4FA2-98B2-6FF4B56F75FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_38_FileIOsavecontact2", "AIE_38_FileIOsavecontact2\AIE_38_FileIOsavecontact2.csproj", "{722E92C7-34B8-43D9-98C7-C927A6884547}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_38_FileIOsavecontact2", "AIE_38_FileIOsavecontact2\AIE_38_FileIOsavecontact2.csproj", "{722E92C7-34B8-43D9-98C7-C927A6884547}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_39_FileIOsavecontactlist", "AIE_39_FileIOsavecontactlist\AIE_39_FileIOsavecontactlist.csproj", "{2F1D94EF-8B0D-4545-A4D9-7800E366F3F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_39_FileIOsavecontactlist", "AIE_39_FileIOsavecontactlist\AIE_39_FileIOsavecontactlist.csproj", "{2F1D94EF-8B0D-4545-A4D9-7800E366F3F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_40_HighScoresTable", "AIE_40_HighScoresTable\AIE_40_HighScoresTable.csproj", "{86E1F958-FB88-42D8-8A02-552E3A1FB63A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_40_HighScoresTable", "AIE_40_HighScoresTable\AIE_40_HighScoresTable.csproj", "{86E1F958-FB88-42D8-8A02-552E3A1FB63A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_41_FileIOsavecontact_crack2", "AIE_41_FileIOsavecontact_crack2\AIE_41_FileIOsavecontact_crack2.csproj", "{44877C15-1F80-4B72-B48F-4FB495C5D471}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_42_FileIOsavecontact2_crack2", "AIE_42_FileIOsavecontact2_crack2\AIE_42_FileIOsavecontact2_crack2.csproj", "{2DDE0B3D-A223-47E9-9412-08F1C963BFF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_43_FileIOsavecontactlist_crack2", "AIE_43_FileIOsavecontactlist_crack2\AIE_43_FileIOsavecontactlist_crack2.csproj", "{59FE7528-ADF1-4854-BF9C-D8EF39D30872}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_44_FileIOhighscores_crack2", "AIE_44_FileIOhighscores_crack2\AIE_44_FileIOhighscores_crack2.csproj", "{C9C9E713-0457-4A49-AF85-C2FBDA3A204C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -249,6 +257,22 @@ Global
 		{86E1F958-FB88-42D8-8A02-552E3A1FB63A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86E1F958-FB88-42D8-8A02-552E3A1FB63A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86E1F958-FB88-42D8-8A02-552E3A1FB63A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44877C15-1F80-4B72-B48F-4FB495C5D471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44877C15-1F80-4B72-B48F-4FB495C5D471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44877C15-1F80-4B72-B48F-4FB495C5D471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44877C15-1F80-4B72-B48F-4FB495C5D471}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DDE0B3D-A223-47E9-9412-08F1C963BFF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DDE0B3D-A223-47E9-9412-08F1C963BFF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DDE0B3D-A223-47E9-9412-08F1C963BFF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DDE0B3D-A223-47E9-9412-08F1C963BFF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59FE7528-ADF1-4854-BF9C-D8EF39D30872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59FE7528-ADF1-4854-BF9C-D8EF39D30872}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59FE7528-ADF1-4854-BF9C-D8EF39D30872}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59FE7528-ADF1-4854-BF9C-D8EF39D30872}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9C9E713-0457-4A49-AF85-C2FBDA3A204C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9C9E713-0457-4A49-AF85-C2FBDA3A204C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9C9E713-0457-4A49-AF85-C2FBDA3A204C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9C9E713-0457-4A49-AF85-C2FBDA3A204C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

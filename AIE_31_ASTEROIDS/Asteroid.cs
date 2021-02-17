@@ -11,7 +11,6 @@ namespace AIE_32_ASTEROIDS
 
         public float radius = 40;
 
-
         public bool asteroidCollisionPlayer = false;
 
         Color asteroidHitColour = new Color(255, 100, 100, 75);

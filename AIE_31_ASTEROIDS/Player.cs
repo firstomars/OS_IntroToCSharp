@@ -20,7 +20,7 @@ namespace AIE_32_ASTEROIDS
         Color hitColor = new Color(255, 100, 100, 255);
         Color currentColor = Color.WHITE;
 
-        int currentScore = 0;
+        public int currentScore = 0;
         string scoreString = "0";
 
         float bulletSpawnCooldown = 0.2f;
