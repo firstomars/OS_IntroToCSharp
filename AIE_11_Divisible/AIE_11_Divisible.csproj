@@ -3,7 +3,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <FileUpgradeFlags>40</FileUpgradeFlags>
-    <UpgradeBackupLocation>C:\Users\Omaza\Documents\Repos\AIE Repos\WEEK1_ClassEx\Backup\AIE_11_Divisible\</UpgradeBackupLocation>
-    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>C:\Users\omars\Documents\OMAR\WEEK1_ClassEx\Backup\AIE_11_Divisible\</UpgradeBackupLocation>
+    <OldToolsVersion>Current</OldToolsVersion>
   </PropertyGroup>
 </Project>

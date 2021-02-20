@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Numerics;
 using Raylib_cs;
@@ -12,9 +13,11 @@ namespace AIE_32_ASTEROIDS
         public string windowTitle = "Asteroids";
 
         Player player;
+
         Bullet[] bullets = new Bullet[100];
 
         Asteroid[] asteroids = new Asteroid[100];
+
         int bigAsteroidDestroyScoreAmount = 50;
         int smallAsteroidDestroyScoreAmount = 30;
         int tinyAsteroidDestroyScoreAmount = 5;
@@ -122,7 +125,8 @@ namespace AIE_32_ASTEROIDS
             if(Raylib.IsKeyPressed(KeyboardKey.KEY_L)) // add control
             {
                 Console.WriteLine($"Current player position: {player.pos}");
-                DeserialiseSaveDetails(player, asteroids, "./savefile/playersave.txt");
+                DeserialiseLoadPlayerDetails(player, "./savefile/playersave.txt");
+                //DeserialiseLoadAsteroidDetails("./savefile/asteroidsave.txt");
             }
         }
         
@@ -251,17 +255,19 @@ namespace AIE_32_ASTEROIDS
                 {
                     if (a != null)
                     {
-                        sw.WriteLine(a.ID);
-                        sw.WriteLine(a.pos); 
-                        sw.WriteLine(a.dir);
-                        sw.WriteLine(a.radius);
+                        sw.Write($"{a.ID} ");
+                        sw.Write($"{a.pos.X} ");
+                        sw.Write($"{a.pos.Y} ");
+                        sw.Write($"{a.dir.X} ");
+                        sw.Write($"{a.dir.Y} ");
+                        sw.Write($"{a.radius} ");
                         sw.WriteLine("");
                     }
                 }
             }
         }
 
-        void DeserialiseSaveDetails(Player player, Asteroid[] asteroids, string filename)
+        void DeserialiseLoadPlayerDetails(Player player, string filename)
         {
             //using stream read from file
             using (StreamReader sr = File.OpenText(filename))
@@ -269,59 +275,51 @@ namespace AIE_32_ASTEROIDS
                 //Get player position
                 string playerPosLine;
 
+                //translating read player.pos into X and Y coords
                 if ((playerPosLine = sr.ReadLine()) != null)
                 {
                     string[] playerPosWords = playerPosLine.Split(" ");
                     string rawValX = playerPosWords[3].Trim('<', ',');
                     string rawValY = playerPosWords[4].Remove(playerPosWords[4].Length - 1, 1);
 
-                    //player.pos.X = int.Parse(rawValX);
                     player.pos.X = float.Parse(rawValX);
-                    //player.pos.Y = int.Parse(rawValY);
                     player.pos.Y = float.Parse(rawValY);
 
                     Console.WriteLine($"New player position: {player.pos}");
                 }
-
-
-
-                //string playerDirLine;
-
-                //if ((playerDirLine = sr.ReadLine()) != null)
-                //{
-                //    string[] playerDirWords = playerDirLine.Split(" ");
-                //    string rawXDirXVal = playerDirWords[3];
-                //}
-
-                //while ((playerPosLine = sr.ReadLine()) != null)
-                //{
-                //    string[] playerPosWords = playerPosLine.Split(" ");
-                //    string rawValX = playerPosWords[3].Trim('<', ',');
-                //    string rawValY = playerPosWords[4].Remove(playerPosWords[4].Length - 1, 1);
-
-                //    player.pos.X = int.Parse(rawValX);
-                //    player.pos.Y = int.Parse(rawValY);
-
-                //    Console.WriteLine($"New player position: {player.pos}");
-                //}
-
-                
-
-
-
-
-                //change player.pos
-
-
-
-                //change player.dir
-
-                //change player.currentScore
             }
-
-
-
         }
+
+        //void DeserialiseLoadAsteroidDetails(string filename)
+        //{
+
+        //    //use streamreader to read text)
+        //    using (StreamReader sr = File.OpenText(filename))
+        //    {
+        //        //List<string[]> savedAsteroidDetails = new List<string[]>();
+
+        //        //create string to save text
+
+        //        string line;
+
+        //        //read text 
+        //        while ((line = sr.ReadLine()) != null)
+        //        {
+        //            string[] aDetails = line.Split(" ");
+
+        //            // identify X pos, Y pos
+        //            float posValX = float.Parse(aDetails[1]);
+        //            float posValY = float.Parse(aDetails[2]);
+                    
+        //            // identify direction
+        //            float dirValX = float.Parse(aDetails[3]);
+        //            float dirValY = float.Parse(aDetails[4]);
+
+        //            // identify radius
+        //            float valRadius = float.Parse(aDetails[5]);
+        //        }
+        //    }
+        //}
 
 
 

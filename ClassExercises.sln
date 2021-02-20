@@ -83,13 +83,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_39_FileIOsavecontactlis
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_40_HighScoresTable", "AIE_40_HighScoresTable\AIE_40_HighScoresTable.csproj", "{86E1F958-FB88-42D8-8A02-552E3A1FB63A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_41_FileIOsavecontact_crack2", "AIE_41_FileIOsavecontact_crack2\AIE_41_FileIOsavecontact_crack2.csproj", "{44877C15-1F80-4B72-B48F-4FB495C5D471}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_41_FileIOsavecontact_crack2", "AIE_41_FileIOsavecontact_crack2\AIE_41_FileIOsavecontact_crack2.csproj", "{44877C15-1F80-4B72-B48F-4FB495C5D471}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_42_FileIOsavecontact2_crack2", "AIE_42_FileIOsavecontact2_crack2\AIE_42_FileIOsavecontact2_crack2.csproj", "{2DDE0B3D-A223-47E9-9412-08F1C963BFF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_42_FileIOsavecontact2_crack2", "AIE_42_FileIOsavecontact2_crack2\AIE_42_FileIOsavecontact2_crack2.csproj", "{2DDE0B3D-A223-47E9-9412-08F1C963BFF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_43_FileIOsavecontactlist_crack2", "AIE_43_FileIOsavecontactlist_crack2\AIE_43_FileIOsavecontactlist_crack2.csproj", "{59FE7528-ADF1-4854-BF9C-D8EF39D30872}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_43_FileIOsavecontactlist_crack2", "AIE_43_FileIOsavecontactlist_crack2\AIE_43_FileIOsavecontactlist_crack2.csproj", "{59FE7528-ADF1-4854-BF9C-D8EF39D30872}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_44_FileIOhighscores_crack2", "AIE_44_FileIOhighscores_crack2\AIE_44_FileIOhighscores_crack2.csproj", "{C9C9E713-0457-4A49-AF85-C2FBDA3A204C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_44_FileIOhighscores_crack2", "AIE_44_FileIOhighscores_crack2\AIE_44_FileIOhighscores_crack2.csproj", "{C9C9E713-0457-4A49-AF85-C2FBDA3A204C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_45_BubbleSort", "AIE_45_BubbleSort\AIE_45_BubbleSort.csproj", "{2DE39532-D2C9-412C-B98D-7C59026BFD9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -273,6 +275,10 @@ Global
 		{C9C9E713-0457-4A49-AF85-C2FBDA3A204C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9C9E713-0457-4A49-AF85-C2FBDA3A204C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9C9E713-0457-4A49-AF85-C2FBDA3A204C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DE39532-D2C9-412C-B98D-7C59026BFD9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DE39532-D2C9-412C-B98D-7C59026BFD9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DE39532-D2C9-412C-B98D-7C59026BFD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DE39532-D2C9-412C-B98D-7C59026BFD9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

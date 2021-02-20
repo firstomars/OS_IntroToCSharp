@@ -1,16 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <FileUpgradeFlags>40</FileUpgradeFlags>
+    <UpgradeBackupLocation>C:\Users\omars\Documents\OMAR\WEEK1_ClassEx\Backup\AIE_29_GameSettings_RL\</UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Raylib-cs" Version="3.5.0" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Assets\" />
   </ItemGroup>
-
 </Project>
