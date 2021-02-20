@@ -275,11 +275,15 @@ namespace AIE_32_ASTEROIDS
                     string rawValX = playerPosWords[3].Trim('<', ',');
                     string rawValY = playerPosWords[4].Remove(playerPosWords[4].Length - 1, 1);
 
-                    player.pos.X = int.Parse(rawValX);
-                    player.pos.Y = int.Parse(rawValY);
+                    //player.pos.X = int.Parse(rawValX);
+                    player.pos.X = float.Parse(rawValX);
+                    //player.pos.Y = int.Parse(rawValY);
+                    player.pos.Y = float.Parse(rawValY);
 
                     Console.WriteLine($"New player position: {player.pos}");
                 }
+
+
 
                 //string playerDirLine;
 
