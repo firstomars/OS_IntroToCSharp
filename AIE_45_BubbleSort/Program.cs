@@ -4,6 +4,10 @@ namespace AIE_45_BubbleSort
 {
     class Program
     {
+
+        static int comparisons = 0;
+        static int swaps = 0;
+
         static void Main(string[] args)
         {
             int[] arrayToBeSorted = new int[] {
@@ -30,6 +34,9 @@ namespace AIE_45_BubbleSort
 
             PrintArray(arrayToBeSorted);
 
+            Console.WriteLine($"Comparisons no.: {comparisons}");
+            Console.WriteLine($"Swaps no.: {swaps}");
+
         }
 
         static void PrintArray(int[] array)
@@ -44,6 +51,10 @@ namespace AIE_45_BubbleSort
             }
             Console.WriteLine();
             Console.WriteLine();
+
+            //Console.Write($"{array[i]},\t");
+            //// alternatively
+            //Console.Write("{0},\t", array[i]");
         }
 
         static void BubbleSort(int[] array)
@@ -51,18 +62,20 @@ namespace AIE_45_BubbleSort
             if (array.Length <= 1) return;
 
             int n = array.Length;
-
+             
             bool sorted = false;
 
             while(!sorted)
             {
-
                 sorted = true;
                 
-                for (int i = 0; i <= n - 2; i++)
+                for (int i = 0; i < n - 1; i++)
                 {
+                    comparisons += 1;
+                    
                     if (array[i] > array[i + 1])
                     {
+                        swaps += 1;
                         int temp = array[i + 1];
                         array[i + 1] = array[i];
                         array[i] = temp;
@@ -71,7 +84,6 @@ namespace AIE_45_BubbleSort
                 }
             }
         }
-
     }
 }
 
