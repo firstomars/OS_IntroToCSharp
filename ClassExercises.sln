@@ -95,9 +95,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_45_BubbleSort", "AIE_45
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_46_NewBubbleSortFunction", "AIE_46_NewBubbleSortFunction\AIE_46_NewBubbleSortFunction.csproj", "{26E68D56-5AF9-4C79-B2D1-AA296F3C0DE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_47_AssessmentEx1", "AIE_47_AssessmentMuckAround\AIE_47_AssessmentEx1.csproj", "{6EE058F1-1DE0-4A69-86C7-449E432DF404}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_47_AssessmentEx1", "AIE_47_AssessmentMuckAround\AIE_47_AssessmentEx1.csproj", "{6EE058F1-1DE0-4A69-86C7-449E432DF404}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_48_AssessmentEx2", "AIE_48_AssessmentEx2\AIE_48_AssessmentEx2.csproj", "{C07FCBFA-54ED-43E7-B21D-6DF3820CD4C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_48_AssessmentEx2", "AIE_48_AssessmentEx2\AIE_48_AssessmentEx2.csproj", "{C07FCBFA-54ED-43E7-B21D-6DF3820CD4C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_49_AssessmentEx3FizzBuzz", "AIE_49_AssessmentEx3FizzBuzz\AIE_49_AssessmentEx3FizzBuzz.csproj", "{C6DD9DD6-3387-4798-8EC2-299F802BB579}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -297,6 +299,10 @@ Global
 		{C07FCBFA-54ED-43E7-B21D-6DF3820CD4C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C07FCBFA-54ED-43E7-B21D-6DF3820CD4C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C07FCBFA-54ED-43E7-B21D-6DF3820CD4C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6DD9DD6-3387-4798-8EC2-299F802BB579}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6DD9DD6-3387-4798-8EC2-299F802BB579}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6DD9DD6-3387-4798-8EC2-299F802BB579}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6DD9DD6-3387-4798-8EC2-299F802BB579}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
