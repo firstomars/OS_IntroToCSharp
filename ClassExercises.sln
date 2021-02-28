@@ -99,7 +99,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_47_AssessmentEx1", "AIE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_48_AssessmentEx2", "AIE_48_AssessmentEx2\AIE_48_AssessmentEx2.csproj", "{C07FCBFA-54ED-43E7-B21D-6DF3820CD4C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_49_AssessmentEx3FizzBuzz", "AIE_49_AssessmentEx3FizzBuzz\AIE_49_AssessmentEx3FizzBuzz.csproj", "{C6DD9DD6-3387-4798-8EC2-299F802BB579}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_49_AssessmentEx3FizzBuzz", "AIE_49_AssessmentEx3FizzBuzz\AIE_49_AssessmentEx3FizzBuzz.csproj", "{C6DD9DD6-3387-4798-8EC2-299F802BB579}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_50_ReversePolishCalculator", "AIE_50_ReversePolishCalculator\AIE_50_ReversePolishCalculator.csproj", "{4D429AED-10E7-4AEF-8F49-D353DF660566}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_51_TileMapEditor", "AIE_51_TileMapEditor\AIE_51_TileMapEditor.csproj", "{04D7D03F-0867-4AF4-BF5C-3B4CB9012DF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_52_ReversePolishCalculator2", "AIE_52_ReversePolishCalculator2\AIE_52_ReversePolishCalculator2.csproj", "{060C1049-F4BA-4895-92A2-C5248BE69DA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -303,6 +309,18 @@ Global
 		{C6DD9DD6-3387-4798-8EC2-299F802BB579}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6DD9DD6-3387-4798-8EC2-299F802BB579}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6DD9DD6-3387-4798-8EC2-299F802BB579}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D429AED-10E7-4AEF-8F49-D353DF660566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D429AED-10E7-4AEF-8F49-D353DF660566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D429AED-10E7-4AEF-8F49-D353DF660566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D429AED-10E7-4AEF-8F49-D353DF660566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04D7D03F-0867-4AF4-BF5C-3B4CB9012DF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04D7D03F-0867-4AF4-BF5C-3B4CB9012DF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04D7D03F-0867-4AF4-BF5C-3B4CB9012DF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04D7D03F-0867-4AF4-BF5C-3B4CB9012DF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{060C1049-F4BA-4895-92A2-C5248BE69DA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{060C1049-F4BA-4895-92A2-C5248BE69DA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{060C1049-F4BA-4895-92A2-C5248BE69DA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{060C1049-F4BA-4895-92A2-C5248BE69DA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

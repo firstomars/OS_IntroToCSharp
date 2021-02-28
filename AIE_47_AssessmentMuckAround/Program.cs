@@ -7,7 +7,7 @@ namespace AIE_47_AssessmentMuckAround
         static void Main(string[] args)
         {
             float firstNumber = 8.54f;
-            float secondNumber = 6.8f;
+            float secondNumber = 6.8f; 
 
             // Output your result to the console 
             Console.WriteLine(AddNumbers(firstNumber, secondNumber));
