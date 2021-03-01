@@ -105,7 +105,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_50_ReversePolishCalcula
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_51_TileMapEditor", "AIE_51_TileMapEditor\AIE_51_TileMapEditor.csproj", "{04D7D03F-0867-4AF4-BF5C-3B4CB9012DF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_52_ReversePolishCalculator2", "AIE_52_ReversePolishCalculator2\AIE_52_ReversePolishCalculator2.csproj", "{060C1049-F4BA-4895-92A2-C5248BE69DA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIE_52_ReversePolishCalculator2", "AIE_52_ReversePolishCalculator2\AIE_52_ReversePolishCalculator2.csproj", "{060C1049-F4BA-4895-92A2-C5248BE69DA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_53_ReversePolishCalculator3", "AIE_53_ReversePolishCalculator3\AIE_53_ReversePolishCalculator3.csproj", "{A79FDCA0-9383-4EF2-A40D-153131327FBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIE_54_PACMAN", "AIE_54_PACMAN\AIE_54_PACMAN.csproj", "{8D3337BF-745E-4B88-9C7E-66D8C6704D1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -321,6 +325,14 @@ Global
 		{060C1049-F4BA-4895-92A2-C5248BE69DA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{060C1049-F4BA-4895-92A2-C5248BE69DA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{060C1049-F4BA-4895-92A2-C5248BE69DA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A79FDCA0-9383-4EF2-A40D-153131327FBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A79FDCA0-9383-4EF2-A40D-153131327FBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A79FDCA0-9383-4EF2-A40D-153131327FBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A79FDCA0-9383-4EF2-A40D-153131327FBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D3337BF-745E-4B88-9C7E-66D8C6704D1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D3337BF-745E-4B88-9C7E-66D8C6704D1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D3337BF-745E-4B88-9C7E-66D8C6704D1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D3337BF-745E-4B88-9C7E-66D8C6704D1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
