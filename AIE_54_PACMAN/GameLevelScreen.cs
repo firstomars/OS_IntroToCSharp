@@ -7,6 +7,7 @@ using Raylib_cs;
 namespace AIE_54_PACMAN
 {
     //why do we create enum TileType outside of the GameLevelScreen class? 
+
     //I'm guessing because we'll mostly only need to access it during the game level screen cs, but other cs' may need to access it?
     // enum doesn't exist in a class?
 
@@ -30,6 +31,8 @@ namespace AIE_54_PACMAN
 
         int score = 1000;
         int lives = 3;
+
+        int numPacDots = 0;
 
         Player player;
 
@@ -66,7 +69,8 @@ namespace AIE_54_PACMAN
             {
                 for (int col = 0; col < tilemap.GetLength(1); col++)
                 {
-                    map[row, col] = (TileType)tilemap[row, col];
+                    SetTileValue(row, col, (TileType)tilemap[row, col]);
+                    //map[row, col] = (TileType)tilemap[row, col];
                 }
             }
 
@@ -90,7 +94,7 @@ namespace AIE_54_PACMAN
         {
             var rect = GetTileRect(row, col);
             Vector2 pos = new Vector2(rect.x + (rect.width / 2), rect.y + (rect.height / 2));
-            player = new Player(pos);
+            player = new Player(this, pos);
             SetTileValue(row, col, TileType.EMPTY);
         }
 
@@ -99,9 +103,36 @@ namespace AIE_54_PACMAN
             return map[row, col];
         }
 
-        public void SetTileValue(int row, int col, TileType value)
+        public TileType GetTileValue(Vector2 pos)
         {
-            map[row, col] = value;
+            int row = GetYPosToRow(pos.Y);
+            int col = GetXPosToCol(pos.X);
+            return GetTileValue(row, col);
+        }
+
+        public void SetTileValue(int row, int col, TileType newState)
+        {
+            var oldState = map[row, col];
+
+            //what do the below && if statements mean!?
+            if (newState == TileType.DOT && oldState != TileType.DOT)
+            {
+                numPacDots += 1;
+            }
+
+            else if (oldState == TileType.DOT && newState != TileType.DOT)
+            {
+                numPacDots -= 1;
+            }
+            
+            map[row, col] = newState;
+        }
+
+        public void SetTileValue(Vector2 position, TileType value)
+        {
+            int row = GetYPosToRow(position.Y);
+            int col = GetXPosToCol(position.X);
+            SetTileValue(row, col, value);
         }
 
         public Rectangle GetTileRect(int row, int col)
@@ -111,9 +142,23 @@ namespace AIE_54_PACMAN
             return new Rectangle(xPos, yPos, tileWidth, tileHeight);
         }
 
+        public Rectangle GetTileRect(Vector2 pos)
+        {
+            int row = GetYPosToRow(pos.Y);
+            int col = GetXPosToCol(pos.X);
+            return GetTileRect(row, col);
+        }
+
         public int GetTileID(int row, int col)
         {
             return row * map.GetLength(1) + col;
+        }
+
+        public int GetTileID(Vector2 pos)
+        {
+            int row = GetYPosToRow(pos.Y);
+            int col = GetXPosToCol(pos.X);
+            return GetTileID(row, col);
         }
 
         public Color GetTileColor(int row, int col)
@@ -126,6 +171,18 @@ namespace AIE_54_PACMAN
             return Color.PINK;
         }
 
+        public int GetYPosToRow(float yPos)
+        {
+            //Get row pos by taking ypos of player (e.g. 100) and dividing it by the tile height
+            // map offset takes into account the top corner of where we gen. the map
+            return (int)((yPos - mapOffsetY) / tileHeight);
+        }
+
+        public int GetXPosToCol(float xPos)
+        {
+            return (int)((xPos - mapOffsetX) / tileWidth);
+        }
+
         public override void Update()
         {
             player.Update();
@@ -136,6 +193,7 @@ namespace AIE_54_PACMAN
             DrawMap();
             DrawUI();
             player.Draw();
+            player.DebugDraw();
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT_CONTROL))
             {
@@ -185,11 +243,21 @@ namespace AIE_54_PACMAN
 
                     int tileID = GetTileID(row, col);
                     int tileVal = (int)GetTileValue(row, col);
-
                     
                     Raylib.DrawText(tileID.ToString(), (int)(rect.x+2), (int)rect.y, 10, Color.BLACK);
                     Raylib.DrawText(tileVal.ToString(), (int)(rect.x+2), (int)(rect.y + rect.height - 12), 10, Color.BLACK);
                 }
+            }
+        }
+
+        public void EatPacDot(Vector2 pos)
+        {
+            SetTileValue(pos, TileType.EMPTY);
+            score += 10;
+
+            if (numPacDots <= 0)
+            {
+                LoadLevel();
             }
         }
     }

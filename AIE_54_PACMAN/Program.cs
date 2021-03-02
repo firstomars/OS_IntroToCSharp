@@ -19,9 +19,11 @@ Create player class
 Draw player
 Move player on key press
 Debug draw player - highlight which tile the player is on
-Snap / locl to grid
+Snap / lock to grid
+Speed up
 Prevent movement from going through walls
 Eat pacdots
+Reset level when all pacdots are eaten
 
 PART 3
 Create Ghost class - copy of player class
