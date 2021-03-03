@@ -6,17 +6,14 @@ using Raylib_cs;
 
 namespace AIE_54_PACMAN
 {
-    //why do we create enum TileType outside of the GameLevelScreen class? 
-
-    //I'm guessing because we'll mostly only need to access it during the game level screen cs, but other cs' may need to access it?
-    // enum doesn't exist in a class?
-
     enum TileType
     {
+        OUT_OF_BOUNDS = -1,
         EMPTY,  //0
         WALL,   //1
         DOT,     //2
-        PLAYERSTART
+        PLAYERSTART, //3
+        GHOST_SPAWN //4
     }
 
     class GameLevelScreen : IGameState //child game state class inheriting from IGameState
@@ -36,6 +33,8 @@ namespace AIE_54_PACMAN
 
         Player player;
 
+        List<Ghost> ghosts = new List<Ghost>();
+
         public GameLevelScreen(Program program) : base(program)
         {
             LoadLevel();
@@ -48,7 +47,7 @@ namespace AIE_54_PACMAN
             int[,] tilemap = new int[,]
             { // 0 1 2 3 4 5 6 7 8 9
                 {1,1,1,1,1,1,1,1,1,1},  // 0
-                {1,0,0,0,0,0,0,0,0,1},  // 1
+                {1,0,0,0,0,0,0,4,0,1},  // 1
                 {1,0,1,0,0,0,0,0,0,1},  // 2
                 {1,0,1,0,1,1,1,0,0,1},  // 3
                 {1,0,1,0,0,3,1,0,1,1},  // 4
@@ -84,11 +83,24 @@ namespace AIE_54_PACMAN
                     if (tileVal == TileType.EMPTY)              SetTileValue(row, col, TileType.DOT);
                     
                     if (tileVal == TileType.PLAYERSTART)        CreatePlayer(row, col);
+
+                    if (tileVal == TileType.GHOST_SPAWN)        CreateGhost(row, col);
                 }
             }
         }
 
+        public void CreateGhost(int row, int col)
+        {
+            var rect = GetTileRect(row, col);
 
+            Vector2 pos = new Vector2(rect.x + (rect.width / 2), rect.y + (rect.height / 2));
+
+            Ghost ghost = new Ghost(this, pos);
+
+            ghosts.Add(ghost);
+
+            SetTileValue(row, col, TileType.EMPTY); //after spawned
+        }
 
         public void CreatePlayer(int row, int col)
         {
@@ -100,6 +112,9 @@ namespace AIE_54_PACMAN
 
         public TileType GetTileValue(int row, int col)
         {
+            if (row < 0 || col < 0 || row >= map.GetLength(0) || col >= map.GetLength(1))
+                return TileType.OUT_OF_BOUNDS;
+
             return map[row, col];
         }
 
@@ -186,6 +201,10 @@ namespace AIE_54_PACMAN
         public override void Update()
         {
             player.Update();
+            foreach (var ghost in ghosts)
+            {
+                ghost.Update();
+            }
         }
 
         public override void Draw()
@@ -193,7 +212,11 @@ namespace AIE_54_PACMAN
             DrawMap();
             DrawUI();
             player.Draw();
-            player.DebugDraw();
+
+            foreach (var ghost in ghosts)
+            {
+                ghost.Draw();
+            }
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT_CONTROL))
             {
@@ -258,6 +281,32 @@ namespace AIE_54_PACMAN
             if (numPacDots <= 0)
             {
                 LoadLevel();
+            }
+        }
+
+        void DoGhostPlayerCollide(Ghost ghost, Player player)
+        {
+            if (ghost == null)
+            {
+                return;
+            }
+
+            float distance = (player.position - ghost.position).Length();
+
+            if (distance < (player.playerRadius + ghost.ghostWidth / 2))
+            {
+                if (player != null)
+                {
+                    //player.Dispose();
+                }
+                //for (int i = 0; i < ghosts.Count; i++)
+                //{
+                //    if (ghosts[i] == ghost)
+                //    {
+                //        //ghosts[i] == null;
+                //        ghosts.RemoveAt(i);
+                //    }
+                //}
             }
         }
     }

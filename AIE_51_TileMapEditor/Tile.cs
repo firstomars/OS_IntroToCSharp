@@ -18,7 +18,8 @@ namespace AIE_51_TileMapEditor
         TileType[,] map;
         float tileWidth = 30;
         float tileHeight = 25;
-        
+
+        int selectedTileId = -1;
 
         public Tile(Program program)
         {
@@ -62,14 +63,79 @@ namespace AIE_51_TileMapEditor
 
         public void Update()
         {
-            if (Raylib.IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON))
+            if (Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
             {
-                GetMousePosition();
-                //Raylib.DrawText((map[row, col]).ToString(),);
+                //mouse position
+                Vector2 mousePos = Raylib.GetMousePosition();
+                
+                //change value of selectedTileID - this will then get picked up by the Draw() if statements
+                selectedTileId = GetTileID(mousePos);
+            }
+        }
 
-                //need position of mouse
-                //if mouse is clicked on tile
-                //generate value and draw text on tile
+        public int GetTileID(int row, int col)
+        {
+            return row * map.GetLength(1) + col;
+        }
+
+        public int GetTileID(Vector2 pos)
+        {
+            int row = GetYPosToRow(pos.Y);
+            int col = GetXPosToCol(pos.X);
+            return GetTileID(row, col);
+        }
+
+        public TileType GetTileValue(Vector2 pos)
+        {
+            int row = GetYPosToRow(pos.Y);
+            int col = GetXPosToCol(pos.X);
+            return GetTileValue(row, col);
+        }
+
+        public int GetYPosToRow(float yPos)
+        {
+            //Get row pos by taking ypos of player (e.g. 100) and dividing it by the tile height
+            // map offset takes into account the top corner of where we gen. the map
+            return (int)(yPos / tileHeight);
+        }
+
+        public int GetXPosToCol(float xPos)
+        {
+            return (int)(xPos / tileWidth);
+        }
+
+        public void DrawTile(int row, int col)
+        {
+            int tileId = GetTileID(row, col);
+
+            if( tileId == selectedTileId )
+            {
+                //this will remove tile
+            }
+            else
+            {
+                Color color = Color.WHITE;
+
+                if (map[row, col] == TileType.DESERT) color = Color.YELLOW;
+                if (map[row, col] == TileType.GRASS) color = Color.LIME;
+                if (map[row, col] == TileType.TREE) color = Color.GREEN;
+                if (map[row, col] == TileType.WATER) color = Color.BLUE;
+
+                var rect = GetTileRect(row, col);
+
+                Raylib.DrawRectangleRec(rect, color);
+            }
+        }
+
+        void DrawSelectedTile()
+        {
+            // draw selected tile
+            if (selectedTileId >= 0)
+            {
+                int selectedRow = selectedTileId / map.GetLength(1);
+                int selectedCol = selectedTileId % map.GetLength(1);
+                var rect = GetTileRect(selectedRow, selectedCol);
+                Raylib.DrawRectangleLinesEx(rect, 2, Color.WHITE);
             }
         }
 
@@ -79,39 +145,39 @@ namespace AIE_51_TileMapEditor
             {
                 for (int col = 0; col < map.GetLength(1); col++)
                 {
-                    float xPos = col * tileWidth;
-                    float yPos = row * tileHeight;
 
-                    Color color = Color.WHITE;
-
-                    if (map[row, col] == TileType.DESERT) color = Color.YELLOW;
-                    if (map[row, col] == TileType.GRASS) color = Color.LIME;
-                    if (map[row, col] == TileType.TREE) color = Color.GREEN;
-                    if (map[row, col] == TileType.WATER) color = Color.BLUE;
-
-                    int tileVal = (int)GetTileValue(row, col);
-
-                    var textSize = Raylib.MeasureText(tileVal.ToString(), 10);
-
-                    Raylib.DrawRectangle((int)xPos, (int)yPos, (int)tileWidth, (int)tileHeight, color);
-                    Raylib.DrawText(tileVal.ToString(), (int)(xPos + tileWidth/2) - textSize/2, (int)(yPos + tileHeight/2) - 5, 10, Color.BLACK);
-                    //Raylib.DrawText(tileVal.ToString(), (int)xPos, (int)yPos, 10, Color.BLACK);
-
-                    //int tileID = row * map.GetLength(1) + col;
-                    //Raylib.DrawText(tileID.ToString(), (int)xPos, (int)yPos, 10, Color.BLACK);
-                    Raylib.DrawRectangleLines((int)xPos, (int)yPos, (int)tileWidth, (int)tileHeight, Color.BLACK);
+                    DrawTile(row, col);
                 }
             }
+            DrawSelectedTile();
         }
+
+        public Rectangle GetTileRect(int row, int col)
+        {
+            float xPos = (col * tileWidth);
+            float yPos = (row * tileHeight);
+            return new Rectangle(xPos, yPos, tileWidth, tileHeight);
+        }
+
 
         public TileType GetTileValue(int row, int col)
         {
             return map[row, col];
         }
-        
-        public Vector2 GetMousePosition()
-        {
-            return Raylib.GetMousePosition();
-        }
+
+        //public int FindMatchingTile(int mouseTileID)
+        //{
+        //    for (int row = 0; row < map.GetLength(0); row++)
+        //    {
+        //        for (int col = 0; col < map.GetLength(1); col++)
+        //        {
+        //            if (mouseTileID == GetTileID(row, col))
+        //            {
+        //                return GetTileID(row, col);
+        //            }
+        //        }
+        //    }
+
+        //    return -1;
     }
 }

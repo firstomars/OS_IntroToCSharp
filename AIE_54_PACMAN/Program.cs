@@ -3,7 +3,7 @@ using Raylib_cs;
 
 namespace AIE_54_PACMAN
 
-//Up to vid 2 - 17:37
+//Up to vid 3 - 20.56
 
 /*
 PART 1

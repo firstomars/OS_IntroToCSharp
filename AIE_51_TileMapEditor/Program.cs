@@ -5,8 +5,8 @@ namespace AIE_51_TileMapEditor
 {
     class Program
     {
-        int windowWidth = 800;
-        int windowHeight = 450;
+        public int windowWidth = 800;
+        public int windowHeight = 450;
 
         Tile tile;
 
@@ -37,7 +37,7 @@ namespace AIE_51_TileMapEditor
 
         void Update()
         {
-
+            tile.Update();
         }
 
         void Draw()

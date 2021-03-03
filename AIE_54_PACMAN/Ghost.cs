@@ -1,26 +1,29 @@
-﻿using System;
+﻿using Raylib_cs;
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
-using Raylib_cs;
 
 namespace AIE_54_PACMAN
 {
-    class Player
+    class Ghost
     {
-        public Vector2 position;// = new Vector2(); - why don't need this?
-        Vector2 direction = new Vector2(0, 0);
-        public int playerRadius = 12;
+        public Vector2 position;
+        public int ghostWidth = 12;
+        public int ghostHeight = 12;
 
-        float maxSpeed = 4.0f;
-        float speed = 4.0f;
+        Vector2 direction = new Vector2(0, 0);
+
+        float speed = 1.0f;
         float lerpTime = 0;
         Vector2 startTilePos;
         Vector2 endTilePos;
 
+        Random rand = new Random();
+
         GameLevelScreen level;
 
-        public Player(GameLevelScreen lev, Vector2 pos)
+        public Ghost(GameLevelScreen lev, Vector2 pos)
         {
             this.level = lev;
             this.position = pos;
@@ -54,12 +57,6 @@ namespace AIE_54_PACMAN
         {
             int currentTile = level.GetTileID(position);
 
-
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT)) direction = new Vector2(-1, 0);
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT)) direction = new Vector2(1, 0);
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_UP)) direction = new Vector2(0, -1);
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN)) direction = new Vector2(0, 1);
-
             //trying to get my head around this
             //once we reach endTile, we are resetting lerptime
             //this sets the startTile to the new Currenttile.
@@ -67,36 +64,50 @@ namespace AIE_54_PACMAN
 
             //what is happening when there is now end tile set? 
             //there will always be an end tile set, it's just that the player speed = 0
-
+            //}
 
             lerpTime += Raylib.GetFrameTime() * speed;
-            if (lerpTime > 1 || speed == 0.0f)
+            if (lerpTime > 1)
             {
+                //get current location
+                int row = level.GetYPosToRow(position.Y);
+                int col = level.GetXPosToCol(position.X);
+
+                //list of avail dirs
+                List<Vector2> availDirs = new List<Vector2>();
+
+                //work out what possible directions there are
+                //is tileVal of tileUp/Down/Left/Right != TileType.WALL add to list if true
+                if (level.GetTileValue(row + 1, col) != TileType.WALL)      availDirs.Add(new Vector2(0, 1));
+                if (level.GetTileValue(row - 1, col) != TileType.WALL)      availDirs.Add(new Vector2(0, -1));
+                if (level.GetTileValue(row, col - 1) != TileType.WALL)      availDirs.Add(new Vector2(-1, 0));
+                if (level.GetTileValue(row, col + 1) != TileType.WALL)      availDirs.Add(new Vector2(1, 0));
+
+                //randomly select an availDir
+                int randomDirection = rand.Next(0,availDirs.Count);
+                direction = availDirs.Count == 0 ? new Vector2(0,0) : availDirs[randomDirection];
+
                 lerpTime = 0;
                 startTilePos = GetCurrentTilePos();
                 endTilePos = GetNextTilePos();
 
                 var endTileValue = level.GetTileValue(endTilePos);
-
-                speed = maxSpeed;
-                if (endTileValue == TileType.WALL)
-                {
-                    speed = 0.0f;
-                }
+                Console.WriteLine(endTileValue);
             }
 
             position = Vector2.Lerp(startTilePos, endTilePos, lerpTime);
 
             int newCurrentTile = level.GetTileID(position);
-            if(currentTile != newCurrentTile)
+            if (currentTile != newCurrentTile)
             {
                 OnTileEnter(newCurrentTile);
             }
         }
 
+        
         public void Draw()
         {
-            Raylib.DrawCircle((int)position.X, (int)position.Y, playerRadius, Color.YELLOW);
+            Raylib.DrawRectangleRec(new Rectangle(position.X - 6, position.Y - 6, ghostWidth, ghostHeight), Color.ORANGE);
             DebugDraw();
         }
 
@@ -114,13 +125,7 @@ namespace AIE_54_PACMAN
 
         void OnTileEnter(int tileId)
         {
-            var tileValue = level.GetTileValue(position);
 
-            if (tileValue == TileType.DOT)
-            {
-                level.EatPacDot(position);
-            }
         }
     }
-    
 }
