@@ -9,6 +9,7 @@ namespace AIE_54_PACMAN
     class Player
     {
         public Vector2 position;// = new Vector2(); - why don't need this?
+        Vector2 spawnPos;
         Vector2 direction = new Vector2(0, 0);
         public int playerRadius = 12;
 
@@ -24,10 +25,15 @@ namespace AIE_54_PACMAN
         {
             this.level = lev;
             this.position = pos;
+            this.spawnPos = pos;
 
             startTilePos = GetCurrentTilePos();
             endTilePos = GetNextTilePos();
+        }
 
+        public Vector2 GetPosition()
+        {
+            return position;
         }
 
         Vector2 GetCurrentTilePos()
@@ -120,6 +126,19 @@ namespace AIE_54_PACMAN
             {
                 level.EatPacDot(position);
             }
+        }
+
+        public void OnCollision(Ghost ghost)
+        {
+            position = spawnPos;
+            //lives -= 1;
+
+            startTilePos = GetCurrentTilePos();
+            direction = new Vector2(0, 0);
+            endTilePos = GetNextTilePos();
+            //direction = new Vector2(0, 0);
+
+            lerpTime = 0.0f;
         }
     }
     

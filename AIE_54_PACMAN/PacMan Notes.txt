@@ -1,0 +1,84 @@
+//PAC MAN
+
+GAME STATES TO DO
+
+1	Menu Screen
+		Design
+2	Enter Name Screen
+		Print player name input to screen
+		Blinking underscore to indicate that name needs to be added
+		Design
+3	Game Level Screen
+		Design
+			Map design / sizing against screen
+			Text layout
+			Lives = asset
+		Gameplay
+			More levels
+			Increase number of starting ghosts
+		Lives = 0 
+			Game over transitions to high score screen after a few seconds
+			Save score + player name to text file
+4	High Score Screen
+		Print high scores from text file to screen
+		Remove "Game Over" text
+
+QUESTIONS
+
+1. What's the code you used to find the centre of text? so it's aligned in the centre?
+
+2. How to get user input added to screen (not console)? Entering their name.
+
+3. Why can't we do this?
+        void HandleGhostPlayerCollisions()
+		{
+			
+			foreach (var ghost in ghosts)
+			{
+				if (GetTileID(ghost.position) == GetTileID(player.position)) //this line
+				{
+					player.OnCollision(ghost);
+					ghost.OnCollision(player);
+				}
+			}
+		}
+	
+---
+
+SCREEN SIZE
+5:4
+
+600:480
+1000:800 
+
+---
+
+PACMAN STEPS
+
+PART 1
+create project
+setup basic game states
+setup GameLevelState"
+Define 2D array for TileMap
+Draw TileMap (walls and pacdots)
+Debug Draw TileMap
+
+PART 2
+Create player class
+Draw player
+Move player on key press
+Debug draw player - highlight which tile the player is on
+Snap / lock to grid
+Speed up
+Prevent movement from going through walls
+Eat pacdots
+Reset level when all pacdots are eaten
+
+PART 3
+Create Ghost class - copy of player class
+Spawn ghosts when level is created
+Move in random direction at intersections
+Detect collissions with Player
+- pacman reset
+- ghost resets
+- lives decrease

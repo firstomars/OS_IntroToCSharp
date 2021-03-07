@@ -9,6 +9,7 @@ namespace AIE_54_PACMAN
     class Ghost
     {
         public Vector2 position;
+        Vector2 spawnPos;
         public int ghostWidth = 12;
         public int ghostHeight = 12;
 
@@ -27,10 +28,16 @@ namespace AIE_54_PACMAN
         {
             this.level = lev;
             this.position = pos;
+            this.spawnPos = pos;
 
             startTilePos = GetCurrentTilePos();
             endTilePos = GetNextTilePos();
 
+        }
+
+        public Vector2 GetPosition()
+        {
+            return position;
         }
 
         Vector2 GetCurrentTilePos()
@@ -126,6 +133,27 @@ namespace AIE_54_PACMAN
         void OnTileEnter(int tileId)
         {
 
+        }
+
+        public void OnCollision(Player player)
+        {
+            //do something with ghost
+            position = spawnPos;
+            direction = new Vector2(1, 0);
+            startTilePos = GetCurrentTilePos();
+            endTilePos = GetNextTilePos();
+            lerpTime = 0.0f;
+            /*
+             
+            //lives -= 1;
+
+            
+            direction = new Vector2(0, 0);
+            
+            //direction = new Vector2(0, 0);
+
+            
+             */
         }
     }
 }

@@ -18,7 +18,8 @@ namespace AIE_54_PACMAN
 
     class GameLevelScreen : IGameState //child game state class inheriting from IGameState
     {
-        //these are member variables now that they have been taken out of "draw". CAn be accessed by other functions in this class
+        //these are member variables now that they have been taken out of "draw". 
+        //Can be accessed by other functions in this class
         float tileWidth = 32;
         float tileHeight = 32;
         float mapOffsetX = 50;
@@ -26,9 +27,9 @@ namespace AIE_54_PACMAN
 
         TileType[,] map;
 
-        int score = 1000;
-        int lives = 3;
-
+        int score = 0;
+        int lives = 1;
+        
         int numPacDots = 0;
 
         Player player;
@@ -201,6 +202,7 @@ namespace AIE_54_PACMAN
         public override void Update()
         {
             player.Update();
+            HandleGhostPlayerCollisions();
             foreach (var ghost in ghosts)
             {
                 ghost.Update();
@@ -226,8 +228,9 @@ namespace AIE_54_PACMAN
 
         private void DrawUI()
         {
-            Raylib.DrawText($"SCORE: {score}", 10, 10, 10, Color.WHITE);
-            Raylib.DrawText($"LIVES: {lives}", program.windowWidth - 80, 10, 10, Color.WHITE);
+            Raylib.DrawText($"SCORE: {score}", 10, 10, 25, Color.WHITE);
+            Raylib.DrawText($"LIVES: {lives}", program.windowWidth - 120, 10, 25, Color.WHITE);
+            Raylib.DrawText(program.playerName, program.windowWidth / 2 - 80, 10, 25, Color.YELLOW);
         }
 
         private void DrawMap()
@@ -246,7 +249,10 @@ namespace AIE_54_PACMAN
                     if (tileValue == TileType.DOT)
                     {
                         int pacDotSize = 2;
-                        Raylib.DrawCircle((int)(rect.x + (rect.width/2)), (int)(rect.y + (rect.height / 2)), pacDotSize, Color.WHITE);
+                        Raylib.DrawCircle
+                            ((int)(rect.x + (rect.width/2)), 
+                            (int)(rect.y + (rect.height / 2)), 
+                            pacDotSize, Color.WHITE);
                     }
                 }
             }
@@ -267,8 +273,16 @@ namespace AIE_54_PACMAN
                     int tileID = GetTileID(row, col);
                     int tileVal = (int)GetTileValue(row, col);
                     
-                    Raylib.DrawText(tileID.ToString(), (int)(rect.x+2), (int)rect.y, 10, Color.BLACK);
-                    Raylib.DrawText(tileVal.ToString(), (int)(rect.x+2), (int)(rect.y + rect.height - 12), 10, Color.BLACK);
+                    Raylib.DrawText
+                        (tileID.ToString(), 
+                        (int)(rect.x+2), 
+                        (int)rect.y, 10, 
+                        Color.BLACK);
+                    Raylib.DrawText
+                        (tileVal.ToString(), 
+                        (int)(rect.x+2), 
+                        (int)(rect.y + rect.height - 12), 
+                        10, Color.BLACK);
                 }
             }
         }
@@ -284,29 +298,26 @@ namespace AIE_54_PACMAN
             }
         }
 
-        void DoGhostPlayerCollide(Ghost ghost, Player player)
+        void HandleGhostPlayerCollisions()
         {
-            if (ghost == null)
-            {
-                return;
-            }
 
-            float distance = (player.position - ghost.position).Length();
-
-            if (distance < (player.playerRadius + ghost.ghostWidth / 2))
+            foreach(var ghost in ghosts)
             {
-                if (player != null)
+                var playerTileId = GetTileID(player.GetPosition());
+                var ghostTileId = GetTileID(ghost.GetPosition());
+                
+                if (playerTileId == ghostTileId)
                 {
-                    //player.Dispose();
+                    player.OnCollision(ghost);
+                    ghost.OnCollision(player);
+                    lives -= 1;
+
+                    if (lives < 0)
+                    {
+                        program.ChangeGameState(new HighScoreScreen(program));
+                    }
+
                 }
-                //for (int i = 0; i < ghosts.Count; i++)
-                //{
-                //    if (ghosts[i] == ghost)
-                //    {
-                //        //ghosts[i] == null;
-                //        ghosts.RemoveAt(i);
-                //    }
-                //}
             }
         }
     }
