@@ -9,7 +9,7 @@ namespace AIE_54_PACMAN
         public int windowHeight = 1000;
         public string windowTitle = "PacMan";
 
-        public string playerName = "TEST NAME";
+        public string playerName;
 
         IGameState currentGameState;
 

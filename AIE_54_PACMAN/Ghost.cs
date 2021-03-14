@@ -115,7 +115,11 @@ namespace AIE_54_PACMAN
         public void Draw()
         {
             Raylib.DrawRectangleRec(new Rectangle(position.X - 6, position.Y - 6, ghostWidth, ghostHeight), Color.ORANGE);
-            DebugDraw();
+            
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT_CONTROL))
+            {
+                DebugDraw();
+            }
         }
 
         public void DebugDraw()

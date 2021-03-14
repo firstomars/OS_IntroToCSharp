@@ -230,7 +230,7 @@ namespace AIE_54_PACMAN
         {
             Raylib.DrawText($"SCORE: {score}", 10, 10, 25, Color.WHITE);
             Raylib.DrawText($"LIVES: {lives}", program.windowWidth - 120, 10, 25, Color.WHITE);
-            Raylib.DrawText(program.playerName, program.windowWidth / 2 - 80, 10, 25, Color.YELLOW);
+            Raylib.DrawText(program.playerName.ToUpper(), program.windowWidth / 2 - 80, 10, 25, Color.YELLOW);
         }
 
         private void DrawMap()

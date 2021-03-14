@@ -5,7 +5,6 @@ GAME STATES TO DO
 1	Menu Screen
 		Design
 2	Enter Name Screen
-		Print player name input to screen
 		Blinking underscore to indicate that name needs to be added
 		Design
 3	Game Level Screen

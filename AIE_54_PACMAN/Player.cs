@@ -103,7 +103,12 @@ namespace AIE_54_PACMAN
         public void Draw()
         {
             Raylib.DrawCircle((int)position.X, (int)position.Y, playerRadius, Color.YELLOW);
-            DebugDraw();
+            
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT_CONTROL))
+            {
+                DebugDraw();
+            }
+            
         }
 
         public void DebugDraw()
