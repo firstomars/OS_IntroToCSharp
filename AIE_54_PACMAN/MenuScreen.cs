@@ -27,9 +27,13 @@ namespace AIE_54_PACMAN
 
         public override void Draw()
         {
-            Raylib.DrawText("PAC MAN", 20, program.windowHeight / 2, 50, Color.WHITE);
+
+            int stringWidth = Raylib.MeasureText("PAC MAN", 50);
+            Raylib.DrawText("PAC MAN", (program.windowWidth - stringWidth)/2, program.windowHeight / 2, 50, Color.WHITE);
             Raylib.DrawText("Press 'ENTER' to start...", 20, (program.windowHeight / 2) + 50, 25, Color.WHITE);
             Raylib.DrawText("Press 'SPACE' to view high scores...", 20, (program.windowHeight / 2) + 100, 25, Color.WHITE);
+
+            
 
         }
     }
