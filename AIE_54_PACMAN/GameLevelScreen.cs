@@ -25,8 +25,6 @@ namespace AIE_54_PACMAN
         float mapOffsetX = 50;
         float mapOffsetY = 50;
 
-        
-
         TileType[,] map;
 
         int score = 0;
